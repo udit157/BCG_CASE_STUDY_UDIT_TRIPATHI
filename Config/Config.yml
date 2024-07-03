@@ -1,9 +1,0 @@
-input_files:
-  charges: "Input_Data/Charges_use.csv"
-  damages: "Input_Data/Damages_use.csv"
-  endorsements: "Input_Data/Endorse_use.csv"
-  primary_person: "Input_Data/Primary_Person_use.csv"
-  restrict: "Input_Data/Restrict_use.csv"
-  units: "Input_Data/Units_use.csv"
-
-output_directory: "Output/"

@@ -34,6 +34,15 @@ if __name__ == "__main__":
 
 
     analyzer.analyze_crashes(analysis_number=1)
+    analyzer.analyze_crashes(analysis_number=2)
+    analyzer.analyze_crashes(analysis_number=3)
+    analyzer.analyze_crashes(analysis_number=4)
+    analyzer.analyze_crashes(analysis_number=5)
+    analyzer.analyze_crashes(analysis_number=6)
+    analyzer.analyze_crashes(analysis_number=7)
+    analyzer.analyze_crashes(analysis_number=8)
+    analyzer.analyze_crashes(analysis_number=9)
+    analyzer.analyze_crashes(analysis_number=10)
 
     # Stop sparkSession
     spark.stop()

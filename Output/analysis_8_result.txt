@@ -1,0 +1,6 @@
+Analysis 8: Top 5 Zip Codes with highest number of crashes with alcohol as contributing factor:
+Zip Code: 76010
+Zip Code: 78521
+Zip Code: 75067
+Zip Code: 78574
+Zip Code: 75052

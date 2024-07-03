@@ -1,0 +1,21 @@
+Analysis 7: Top ethnic user group for each unique body style involved in crashes:
+Body Style ID: AMBULANCE, Ethnicity ID: WHITE
+Body Style ID: BUS, Ethnicity ID: HISPANIC
+Body Style ID: FARM EQUIPMENT, Ethnicity ID: WHITE
+Body Style ID: FIRE TRUCK, Ethnicity ID: WHITE
+Body Style ID: MOTORCYCLE, Ethnicity ID: WHITE
+Body Style ID: NEV-NEIGHBORHOOD ELECTRIC VEHICLE, Ethnicity ID: WHITE
+Body Style ID: NOT REPORTED, Ethnicity ID: HISPANIC
+Body Style ID: NOT REPORTED, Ethnicity ID: WHITE
+Body Style ID: OTHER  (EXPLAIN IN NARRATIVE), Ethnicity ID: WHITE
+Body Style ID: PASSENGER CAR, 2-DOOR, Ethnicity ID: WHITE
+Body Style ID: PASSENGER CAR, 4-DOOR, Ethnicity ID: WHITE
+Body Style ID: PICKUP, Ethnicity ID: WHITE
+Body Style ID: POLICE CAR/TRUCK, Ethnicity ID: WHITE
+Body Style ID: POLICE MOTORCYCLE, Ethnicity ID: HISPANIC
+Body Style ID: SPORT UTILITY VEHICLE, Ethnicity ID: WHITE
+Body Style ID: TRUCK, Ethnicity ID: WHITE
+Body Style ID: TRUCK TRACTOR, Ethnicity ID: WHITE
+Body Style ID: UNKNOWN, Ethnicity ID: WHITE
+Body Style ID: VAN, Ethnicity ID: WHITE
+Body Style ID: YELLOW SCHOOL BUS, Ethnicity ID: WHITE

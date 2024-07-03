@@ -1,0 +1,4 @@
+Analysis 6: Top 3rd to 5th VEH_MAKE_IDs contributing to largest number of injuries including death:
+Vehicle Make ID: TOYOTA, Injury Count: 7072
+Vehicle Make ID: DODGE, Injury Count: 5550
+Vehicle Make ID: NISSAN, Injury Count: 4845

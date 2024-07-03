@@ -1,0 +1,6 @@
+Analysis 10: Top 5 Vehicle Makes where drivers are charged with speeding related offences, have licensed Drivers, use top 10 vehicle colors, and are licensed in the Top 25 states with highest number of offences:
+Vehicle Make ID: FORD, Count: 38
+Vehicle Make ID: TOYOTA, Count: 22
+Vehicle Make ID: CHEVROLET, Count: 17
+Vehicle Make ID: DODGE, Count: 16
+Vehicle Make ID: HONDA, Count: 15

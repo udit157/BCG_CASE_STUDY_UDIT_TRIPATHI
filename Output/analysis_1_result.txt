@@ -1,0 +1,1 @@
+Analysis 1: Number of crashes where number of males killed > 2: 0

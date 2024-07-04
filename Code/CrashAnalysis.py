@@ -40,8 +40,8 @@ class VehicleCrashAnalyzer:
         num_crashes_with_male_fatalities = self.primary_person.filter((col("PRSN_GNDR_ID") == "MALE") & (col("DEATH_CNT") > 2))\
             .select("CRASH_ID").distinct().count()
 
-        # Write Analysis 1 result to a file
-        analysis_1_output_path = os.path.join(self.output_directory, "analysis_1_result.txt")
+        """ Write Analysis 1 result to a file """
+        analysis_1_output_path = os.path.join(self.output_directory, "analysis_1.txt")
         with open(analysis_1_output_path, "w") as file:
             file.write(f"Analysis 1: Number of crashes where number of males killed > 2: {num_crashes_with_male_fatalities}")
 
@@ -49,25 +49,25 @@ class VehicleCrashAnalyzer:
         num_two_wheelers_crash = self.units.filter(col("VEH_BODY_STYL_ID").like("%MOTORCYCLE%")) \
         .select("CRASH_ID").distinct().count()
         
-        # Write Analysis 2 result to a file
-        analysis_2_output_path = os.path.join(self.output_directory, "analysis_2_result.txt")
+        """ Write Analysis 2 result to a file """
+        analysis_2_output_path = os.path.join(self.output_directory, "analysis_2.txt")
         with open(analysis_2_output_path, "w") as file:
             file.write(f"Analysis 2: Count of two-wheelers booked for crashes: {num_two_wheelers_crash}")
             
     def _analysis_3(self):
         window_spec = Window.partitionBy("VEH_MAKE_ID").orderBy(col("crash_count").desc())
 
-        # Filter and count crashes where the driver died and airbags did not deploy
+        """ Filter and count crashes where the driver died and airbags did not deploy """
         top_5_makes = self.units.filter(col("VEH_MAKE_ID") != "NA") \
         .join(self.primary_person.filter((col("PRSN_TYPE_ID") == "DRIVER") & (col("DEATH_CNT") > 0) & (col("PRSN_AIRBAG_ID") == "NOT DEPLOYED")), "CRASH_ID") \
         .groupBy("VEH_MAKE_ID").agg(count("CRASH_ID").alias("crash_count")) \
         .orderBy(desc("crash_count")).limit(5).select("VEH_MAKE_ID")
 
-        # Collect results as list
+        """ Collect results as list """
         top_5_makes_list = top_5_makes.collect()
 
-        # Write Analysis 3 result to a file
-        analysis_3_output_path = os.path.join(self.output_directory, "analysis_3_result.txt")
+        """ Write Analysis 3 result to a file """
+        analysis_3_output_path = os.path.join(self.output_directory, "analysis_3.txt")
         with open(analysis_3_output_path, "w") as file:
             file.write("Analysis 3: Top 5 Vehicle Makes of cars where driver died and Airbags did not deploy:")
             for row in top_5_makes_list:
@@ -78,8 +78,8 @@ class VehicleCrashAnalyzer:
         .join(self.units.filter(col("VEH_HNR_FL") == "Y"), "CRASH_ID") \
         .select("CRASH_ID").distinct().count()
 
-        # Write Analysis 4 result to a file
-        analysis_4_output_path = os.path.join(self.output_directory, "analysis_4_result.txt")
+        """ Write Analysis 4 result to a file """
+        analysis_4_output_path = os.path.join(self.output_directory, "analysis_4.txt")
         with open(analysis_4_output_path, "w") as file:
             file.write(f"Analysis 4: Number of vehicles with valid licensed drivers involved in hit and run: {num_licensed_hit_and_run_vehicles}")
 
@@ -91,8 +91,8 @@ class VehicleCrashAnalyzer:
         .orderBy(desc("accident_count")) \
         .select("DRVR_LIC_STATE_ID").first()["DRVR_LIC_STATE_ID"]
 
-        # Write Analysis 5 result to a file
-        analysis_5_output_path = os.path.join(self.output_directory, "analysis_5_result.txt")
+        """ Write Analysis 5 result to a file """
+        analysis_5_output_path = os.path.join(self.output_directory, "analysis_5.txt")
         with open(analysis_5_output_path, "w") as file:
             file.write(f"Analysis 5: State with highest number of accidents where females are not involved: {highest_num_accident_female}")
     
@@ -108,8 +108,8 @@ class VehicleCrashAnalyzer:
         .withColumn("rank", dense_rank().over(window_spec_6)) \
         .filter((col("rank") >= 3) & (col("rank") <= 5)).select("u.VEH_MAKE_ID", "injury_count")
 
-        # Write Analysis 6 result to a file
-        analysis_6_output_path = os.path.join(self.output_directory, "analysis_6_result.txt")
+        """ Write Analysis 6 result to a file """
+        analysis_6_output_path = os.path.join(self.output_directory, "analysis_6.txt")
         top_3_to_5_veh_make_rows = top_3_to_5_veh_make.collect()
         with open(analysis_6_output_path, "w") as file:
             file.write("Analysis 6: Top 3rd to 5th VEH_MAKE_IDs contributing to largest number of injuries including death:")
@@ -125,11 +125,11 @@ class VehicleCrashAnalyzer:
         .withColumn("rank", dense_rank().over(window_spec_7)) \
         .filter(col("rank") == 1).select("VEH_BODY_STYL_ID", "PRSN_ETHNICITY_ID")
 
-        # Remove rows where VEH_BODY_STYL_ID is 'NA'
+        """ Remove rows where VEH_BODY_STYL_ID is 'NA' """
         top_ethnic_group = top_ethnic_group.filter(col("VEH_BODY_STYL_ID") != "NA")
 
-        # Write Analysis 7 result to a file
-        analysis_7_output_path = os.path.join(self.output_directory, "analysis_7_result.txt")
+        """ Write Analysis 7 result to a file """
+        analysis_7_output_path = os.path.join(self.output_directory, "analysis_7.txt")
         top_ethnic_group_rows = top_ethnic_group.collect()
         with open(analysis_7_output_path, "w") as file:
             file.write("Analysis 7: Top ethnic user group for each unique body style involved in crashes:")
@@ -145,8 +145,8 @@ class VehicleCrashAnalyzer:
         .orderBy(desc("alcohol_crash_count")) \
         .select("DRVR_ZIP").limit(5)
 
-        # Write Analysis 8 result to a file
-        analysis_8_output_path = os.path.join(self.output_directory, "analysis_8_result.txt")
+        """ Write Analysis 8 result to a file """
+        analysis_8_output_path = os.path.join(self.output_directory, "analysis_8.txt")
         top_5_zip_alcohol_crash_rows = top_5_zip_alcohol_crash.collect()
 
         with open(analysis_8_output_path, "w") as file:
@@ -159,18 +159,18 @@ class VehicleCrashAnalyzer:
         .join(self.damages.filter(col("DAMAGED_PROPERTY").isNull()), "CRASH_ID") \
         .select("CRASH_ID").distinct().count()
 
-        # Write Analysis 9 result to a file
-        analysis_9_output_path = os.path.join(self.output_directory, "analysis_9_result.txt")
+        """ Write Analysis 9 result to a file """
+        analysis_9_output_path = os.path.join(self.output_directory, "analysis_9.txt")
         with open(analysis_9_output_path, "w") as file:
             file.write(f"\nAnalysis 9: Count of distinct Crash IDs where No Damaged Property observed, Damage Level > 4, and car avails Insurance: {num_crash_insurance}")
     
     def _analysis_10(self):
-        # Get top 10 vehicle colors based on crash count
+        """ Get top 10 vehicle colors based on crash count """
         top_10_colors = self.units.groupBy("VEH_COLOR_ID") \
         .agg(count("CRASH_ID").alias("color_count")) \
         .orderBy(desc("color_count")).select("VEH_COLOR_ID").limit(10)
 
-        # Get top 25 states based on crash count
+        """ Get top 25 states based on crash count """
         top_25_states = self.primary_person.groupBy("DRVR_LIC_STATE_ID") \
         .agg(count("CRASH_ID").alias("state_count")) \
         .orderBy(desc("state_count")).select("DRVR_LIC_STATE_ID").limit(25)
@@ -184,8 +184,8 @@ class VehicleCrashAnalyzer:
         .agg(count("CRASH_ID").alias("make_count")) \
         .orderBy(desc("make_count")).select("VEH_MAKE_ID", "make_count").limit(5)
 
-        # Write Analysis 10 result to a file
-        analysis_10_output_path = os.path.join(self.output_directory, "analysis_10_result.txt")
+        """ Write Analysis 10 result to a file """
+        analysis_10_output_path = os.path.join(self.output_directory, "analysis_10.txt")
         top_5_vehicles_rows = top_5_vehicles.collect()
         with open(analysis_10_output_path, "w") as file:
             file.write("Analysis 10: Top 5 Vehicle Makes where drivers are charged with speeding related offences, have licensed Drivers, use top 10 vehicle colors, and are licensed in the Top 25 states with highest number of offences:")

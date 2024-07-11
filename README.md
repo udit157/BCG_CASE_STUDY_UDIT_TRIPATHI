@@ -1,5 +1,5 @@
-# BCG_CASE_STUDY_UDIT_TRIPATHI
-Analysis of vehicles crash data using Spark
+# Vehicle Crash Analysis
+Analysis of vehicles crash data using PySpark
 
 ## Project Structure
 
